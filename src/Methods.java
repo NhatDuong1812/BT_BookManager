@@ -1,56 +1,44 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Methods {
 
-    int[] priceList = new int[5];
+    static List<Book> bookList = new ArrayList<>();
 
-    public Book add(List<Book> bookList){
-        Scanner sc =new Scanner(System.in);
-        System.out.println("Enter id: ");
-        int id = Integer.parseInt(sc.nextLine());
-        System.out.println("Enter name:");
-        String name = sc.nextLine();
-        System.out.println("Enter publishDate:");
-        String publishDate = sc.nextLine();
-        System.out.println("Enter author:");
-        String author = sc.nextLine();
-        System.out.println("Enter language:");
-        String language = sc.nextLine();
-        System.out.println("Enter tbPrice:");
-        float tbPrice = Float.parseFloat(sc.nextLine());
-        Book book = new Book(id,name,publishDate,author,language,tbPrice);
-        return book;
-
+    public void add(Book book){
+        bookList.add(book);
     }
 
-    public void show(List<Book> bookList){
-        for (Book b: bookList
+    public void show(){
+        for (Book book: bookList
              ) {
-            b.display();
+            book.display();
         }
     }
 
-    public void delete(List<Book> bookList, int idDelete){
+    public void delete(int idDelete){
         for (Book b : bookList){
             if (idDelete == b.id){
                 bookList.remove(b);
+                System.out.println("!!Delete complete!!");
                 break;
             }
         }
     }
-    public Book search(List<Book> bookList, int idSearch){
-        Book book = new Book();
-        for (Book b:bookList
+    public boolean search(int idSearch){
+//        Book book = new Book();
+        for (Book book:bookList
              ) {
-            if (idSearch == b.id){
-                book = b;
+            if (idSearch == book.id){
+//                book = b;
+                book.display();
             }
         }
-        return book;
+        return true;
     }
 
-    public float tinhTrungBinh(List<Book> bookList){
+    public float tinhTrungBinh(){
         float sum = 0;
         float i = 0;
         for (Book b: bookList
